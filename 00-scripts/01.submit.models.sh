@@ -1,0 +1,16 @@
+msub models/model_job_array.1.sh
+#msub models/model_job_array.2.sh
+#msub models/model_job_array.3.sh
+#msub models/model_job_array.4.sh
+#msub models/model_job_array.5.sh
+#msub models/model_job_array.6.sh
+#msub models/model_job_array.7.sh
+#msub models/model_job_array.8.sh
+#msub models/model_job_array.9.sh
+#msub models/model_job_array.10.sh
+#msub models/model_job_array.11.sh
+#msub models/model_job_array.12.sh
+#msub models/model_job_array.13.sh
+#msub models/model_job_array.14.sh
+#msub models/model_job_array.15.sh
+#msub models/model_job_array.16.sh
