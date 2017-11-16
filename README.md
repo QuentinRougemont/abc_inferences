@@ -1,4 +1,4 @@
-# abc_inferences (and other adds on for demographic inferences)
+# abc_inferences 
 
 # Purpose
 whole pipeline to perform [coalescent](http://www.nature.com/nrg/journal/v3/n5/full/nrg795.html) simulations and  [abc](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002803) inferences
@@ -76,11 +76,10 @@ If you want you can dowload them, merge them and filter them in `plink` using th
 
 ```
 --geno 0.05
---maf 0.05
 --mind 0.05
 --noweb
 ```
-this will result in a dataset of 4656 SNPs and 2035 individuals as provided in the [sister github repository](https://github.com/QuentinRougemont/abc_inferences_data)  
+this will result in a dataset of ~5000 SNPs and 2035 individuals as provided in the [sister github repository](https://github.com/QuentinRougemont/abc_inferences_data)  
 
 ### Runing directly on an input exampl  e
 if you are lazy preparing the data i also provide a ready to use example in the folder `00-example_input_abc` for the [sister github repository](https://github.com/QuentinRougemont/abc_inferences_data)   
