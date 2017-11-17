@@ -3,7 +3,7 @@
 #PBS -N OutputTest
 ##PBS -o OutTest.out
 ##PBS -e OutTest.err
-#PBS -l walltime=00:10:00
+#PBS -l walltime=02:40:00
 #PBS -l nodes=1:ppn=8
 #PBS -M quentinrougemont@orange.fr
 ##PBS -m ea 
@@ -13,8 +13,8 @@
 cd "${PBS_O_WORKDIR}"
 
 # Folder to run simulations
-MODEL=./models/model.17.sh
-FOLDER=./results/2P.bot.sc.heterom.heteron.$MOAB_JOBARRAYINDEX
+MODEL=./00-scripts/models/model.2.sh
+FOLDER=./results/si.homom.homon.$MOAB_JOBARRAYINDEX
 
 
 for i in $(seq 8)
