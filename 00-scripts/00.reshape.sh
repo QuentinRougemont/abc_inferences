@@ -1,16 +1,7 @@
 #!/bin/bash
-#Header for colosse calcul quebec
-#PBS -A ihv-653-ab
-#PBS -N reshape
-##PBS -o reshape.out
-##PBS -e reshape.err
-#PBS -l walltime=00:25:00
-#PBS -l nodes=1:ppn=8
-##PBS -M quentinrougemont@orange.fr
-##PBS -m bea
 
-# Move to directory where job was submitted
-cd $PBS_O_WORKDIR
+#script to reshape the data
+#to be use carefully
 target=1000000 #set the number of wanted simulations
 
 ls -d results/*/ | sed -e 's/\([0-9]*\)//g' -e 's/._\///g'  -e 's/results\///g' |uniq > list
