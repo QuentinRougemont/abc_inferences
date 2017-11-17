@@ -19,22 +19,17 @@ input_1 <- as.matrix( read.table(input) )
 marker <- input_1[1, ]
 input_1 <-  input_1[-1, ]
 
-input_1[which(input_1[,1]=="Matane"), ] <-"Mat2"
-input_1[which(input_1[,1]=="StJeanCote"), ] <-"StJC"
-input_1[which(input_1[,1]=="StJeanGasp"), ] <-"StJG"
-
 input_1[,1] <- substr( x=input_1[,1], start=1, stop=4)
 result <- lapply( split( input_1, input_1[,1]), matrix, ncol=ncol(input_1) )
 
-#names(result)
-
-#target.folder = eval(parse(text = folder))
 
 #Then write the target table:
 #exemple:
-for(i in 1:length(result))
+len_items = length(results)
+
+for(i in seq(len_items-1))
 {
-     for(j in 1:length(result))
+     for(j in seq(i+1 , len_items1))
      {
      write.table(cbind(all,t(rbind(result[[i]],result[[j]]))),paste(folder,names(result[i]),names(result[j]),".ABC.tmp",sep=""), quote=F, row.names=F, col.names=F,sep="\t")
      }

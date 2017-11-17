@@ -1,4 +1,5 @@
 #!/bin/bash
+#Header for colosse calcul quebec
 #PBS -A ihv-653-ab
 #PBS -N reshape
 ##PBS -o reshape.out
@@ -12,9 +13,6 @@
 cd $PBS_O_WORKDIR
 target=1000000 #set the number of wanted simulations
 
-#ici faire test pour vérifier qu'on est bien le bon nombre de simulations totale
-#1 on list les modèles
-list=$( ls -d results/*/ | sed -e 's/\([0-9]*\)//g' -e 's/._\///g'  -e 's/results\///g' |uniq |less )
 ls -d results/*/ | sed -e 's/\([0-9]*\)//g' -e 's/._\///g'  -e 's/results\///g' |uniq > list
 
 for j in $(cat list) ; do mkdir results/$j.glob ; done 
@@ -26,7 +24,7 @@ sed -i '/^$/d' results/*.h*.ABC.stat.txt
 for j in  *.glob ; do rm results/$j/*/myfifo  results/$j/*/error.txt results/$j/*/sp*txt results/$j/*/bpfile results/$j/*/seedms ; done
 for i in results ; do for j  in  $i/*.glob  ; do  tar -zcvf $j.tar.gz $j ; done ;done
 for j in $(ls -d results/*glob/ ) ; do  rm  -r $j ; done
-rm *.err *.out
+#rm *.err *.out
 
 for i in $(cat list) ; do wc -l results/$i.ABC.stat.txt  |awk '{print $1}' >>  stat.tmp ; done
 for i in $(cat list) ; do wc -l results/$i.priorfile.txt |awk '{print $1}' >> prior.tmp ; done 

@@ -33,5 +33,6 @@ sdf[sdf=="NANA"] <- "--"
 sdf[sdf=="TRUE"] <- "T"
 
 write.table( rbind( dat5, as.matrix( cbind(dat2[,c(1:2)],as.data.frame(sdf)) ) ),"genotypic.matrix",quote=F,col.names=F,row.names=F)
-
+remove <- paste("sed -i 's/TRUE/T/g' genotypic.matrix ")
+system(remove)
 }

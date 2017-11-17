@@ -47,7 +47,7 @@ do
     cp "$input_folder"$i/spinput.txt "$input_folder"$i/spinput.txt.2  ;
     sed -i 's/myfifo/locus.ms/g' "$input_folder"$i/spinput.txt ;
     sed -i 's/100000/1/g' "$input_folder"$i/spinput.txt ;  
-    echo -e "cd ../../"$input_folder"$i\n /usr/bin/mscalc/mscalc0 spinput.txt \n" >> ms.calc 
+    echo -e "cd ../../"$input_folder"$i\n /usr/bin/mscalc/mscalc spinput.txt \n" >> ms.calc 
 done
 sed -i '0,/..\/..\//s///' ms.calc
 bash ms.calc
