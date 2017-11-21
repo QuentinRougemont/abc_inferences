@@ -16,7 +16,7 @@
 cd $SLURM_SUBMIT_DIR
 
 # Folder to run simulations
-MODEL=./00-scripts/models/model.12.sh
+MODEL=./00-scripts/models/theta/model.12.sh
 FOLDER=./results/im.homom.heteron.$SLURM_ARRAY_TASK_ID
 
 

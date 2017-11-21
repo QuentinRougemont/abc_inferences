@@ -13,7 +13,7 @@
 cd "${PBS_O_WORKDIR}"
 
 # Folder to run simulations
-MODEL=./00-scripts/models/model.18.sh
+MODEL=./00-scripts/models/theta/model.18.sh
 FOLDER=./results/pan.homom.heteron.$SLURM_ARRAY_TASK_ID
 
 
