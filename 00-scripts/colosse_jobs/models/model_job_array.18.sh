@@ -13,7 +13,7 @@
 cd "${PBS_O_WORKDIR}"
 
 # Folder to run simulations
-MODEL=./00-scripts/models/model.18.sh
+MODEL=./00-scripts/models/"$sims_type"/model.18.sh
 FOLDER=./results/pan.homom.heteron.$MOAB_JOBARRAYINDEX
 
 
