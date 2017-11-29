@@ -3,7 +3,7 @@
 #PBS -N OutputTest
 ##PBS -o OutTest.out
 ##PBS -e OutTest.err
-#PBS -l walltime=05:00:00
+#PBS -l walltime=07:00:00
 #PBS -l nodes=1:ppn=8
 #PBS -M quentinrougemont@orange.fr
 ##PBS -m ea 
