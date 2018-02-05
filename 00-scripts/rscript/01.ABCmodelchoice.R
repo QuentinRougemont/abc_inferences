@@ -135,5 +135,8 @@ sd_all=apply(res5,2,sd)
 write.table(mean_all,
             "mean_all",
             quote=F,
-            row.names=c("SI1","SI2","AM1","AM2","AM3","AM4","IM1","IM2","IM3","IM4","SC1","SC2","SC3","SC4"),
+            row.names=c("SI1","SI2",
+                        "IM1","IM2","IM3","IM4",
+                        "AM1","AM2","AM3","AM4",
+                        "SC1","SC2","SC3","SC4"),
             col.names=F)
