@@ -23,7 +23,7 @@ if [[ -z "$sims_type" ]]
 fi
 
 # Folder to run simulations
-MODEL=./00-scripts/models/"$sims_type"/model.8.sh
+MODEL=./00-scripts/00-scripts/models/"$sims_type"/model.8.sh
 FOLDER=./results/sc.heterom.homon.$MOAB_JOBARRAYINDEX
 
 
