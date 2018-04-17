@@ -5,7 +5,8 @@ whole pipeline to perform [coalescent](http://www.nature.com/nrg/journal/v3/n5/f
 
 This pipeline was used to reconstruct the demographic history of Atlantic salmon *salmo salar*.
 
-I also provide additional script to reproduce major analysis from the paper "reconstructing the history of Atlantic salmon *salmo salar* using ABC".
+I also provide additional script to reproduce major analysis from the paper about "reconstructing the history of Atlantic salmon *salmo salar* using ABC" [available in early view](https://onlinelibrary.wiley.com/doi/epdf/10.1111/evo.13486)
+
 
 ## major steps:
 
@@ -318,3 +319,7 @@ Programms:
  * msnsam : [Ross-Ibarra J, Tenaillon M, Gaut BS. Historical Divergence and Gene Flow in the Genus Zea. Genetics. 2009;181: 1399–1413. doi:10.1534/genetics.108.097238](http://www.genetics.org/content/181/4/1399)
 
  * abc R package: [Csilléry K, François O, Blum MGB. abc: an R package for approximate Bayesian computation (ABC). Methods Ecol Evol. 2012;3: 475–479. doi:10.1111/j.2041-210X.2011.00179.x](http://onlinelibrary.wiley.com/doi/10.1111/j.2041-210X.2011.00179.x/full)
+
+Salmon paper:
+ * [Rougemont, Bernatchez The demographic history of Atlantic Salmon (Salmo salar) across its distribution range reconstructed from Approximate Bayesian Computations, Evolution, 2018, https://doi.org/10.1111/evo.13486](https://onlinelibrary.wiley.com/doi/pdf/10.1111/evo.13486)
+ 
