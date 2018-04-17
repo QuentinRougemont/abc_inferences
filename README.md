@@ -15,7 +15,10 @@ I also provide additional script to reproduce major analysis from the paper abou
 3. choose the model you want to run and the appropriate prior
 4. run the coalescent sims
 5. reshape the data
-6. run the abc analysis for : (a) model selection (b) robustness computation (c) parameters estimation and goodness of fit
+6. run the abc analysis for : 
+ (a) model selection 
+ (b) robustness computation 
+ (c) parameters estimation and goodness of fit
 7. (eventually run the pipeline using only barrier loci)
 8. (eventually draw neutral enveloppe to perform outlier detection test - I will add this later )
 
