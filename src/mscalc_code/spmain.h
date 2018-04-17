@@ -1,5 +1,5 @@
 
-#define MAX_NLOC 15000	/*max number of loci in simulation datasets*/
+#define MAX_NLOC 25000	/*max number of loci in simulation datasets*/
 #define SMAX 1000			/*size of string arrays used for messages*/
 
 
