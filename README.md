@@ -5,7 +5,7 @@ whole pipeline to perform [coalescent](http://www.nature.com/nrg/journal/v3/n5/f
 
 This pipeline was used to reconstruct the demographic history of Atlantic salmon *salmo salar*.
 
-I also provide additional script to reproduce major analysis from the paper about "reconstructing the history of Atlantic salmon *salmo salar* using ABC" [available in early view](https://onlinelibrary.wiley.com/doi/epdf/10.1111/evo.13486)
+I also provide additional script to reproduce major analysis from the paper about "reconstructing the history of Atlantic salmon *salmo salar* using ABC" now publish in Evolution and [available in early view](https://onlinelibrary.wiley.com/doi/epdf/10.1111/evo.13486)
 
 
 ## major steps:
