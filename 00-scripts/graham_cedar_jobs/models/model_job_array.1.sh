@@ -15,6 +15,10 @@
 # Move to directory where job was submitted
 cd $SLURM_SUBMIT_DIR
 
+#for niagara only:
+module load python/2.7.14
+source ENV/bin/activate
+
 sims_type=$1 #either 1) "theta" which corresponds to the options -t of ms 
              #2) "single_snps" to generate snp with option -s
 	     #3) "single_snps_ascertainment" to generate snps with ascertainment bias (for SNPs chips)
