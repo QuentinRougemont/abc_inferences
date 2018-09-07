@@ -3,7 +3,7 @@
 #PBS -N OutputTest
 ##PBS -o OutTest.out
 ##PBS -e OutTest.err
-#PBS -l walltime=02:45:00
+#PBS -l walltime=03:45:00
 #PBS -l nodes=1:ppn=8
 #PBS -M quentinrougemont@orange.fr
 ##PBS -m ea 
@@ -13,7 +13,7 @@
 cd "${PBS_O_WORKDIR}"
 
 # Folder to run simulations
-MODEL=./models/"$sims_type"/model.0.sh
+MODEL=./models/theta/model.0.sh
 FOLDER=./results/pan.homom.heteron.$SLURM_ARRAY_TASK_ID
 
 for i in $(seq 32)

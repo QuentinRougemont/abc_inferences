@@ -13,7 +13,7 @@
 cd "${PBS_O_WORKDIR}"
 
 # Folder to run simulations
-MODEL=./00-scripts/models/"$sims_type"/model.16.sh
+MODEL=./00-scripts/models/theta/model.16.sh
 FOLDER=./results/2P.sc.heterom.heteron.$SLURM_ARRAY_TASK_ID
 
 
