@@ -34,7 +34,8 @@ mknod myfifo p
     shape1=0 shape1=20 shape2=0 shape2=200 \
     model=EQ \
     nreps="$NREPS" \
-    Nvariation=hetero Mvariation=homo \
+    Nvariation=hetero \
+    Mvariation=homo \
     symMig=asym \
     parameters=priorfile | \
    ../../bin/msnsam tbs $(( $NREPS * $NLOC )) -t 0.16 -r 0.08 80 \
