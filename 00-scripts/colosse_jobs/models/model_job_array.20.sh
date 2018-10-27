@@ -24,7 +24,7 @@ fi
 
 # Folder to run simulations
 MODEL=./00-scripts/models/"$sims_type"/model.20.sh
-FOLDER=./results/eq.heterom.heteron.$MOAB_JOBARRAYINDEX
+FOLDER=./results/eq.homom.heteron.$MOAB_JOBARRAYINDEX
 
 
 for i in $(seq 8)
