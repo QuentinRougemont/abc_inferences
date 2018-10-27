@@ -3,6 +3,9 @@
 argv    <- commandArgs(TRUE)        #pas utile pour l'instant 
 input_1 <- argv[1]                 #pas utile pour l'instant #Nom dataframe
 input_2 <- argv[2]
+
+input_2 <- "geno"
+input_1 <- "header"
 geno <- read.table(input_2)
 header <- read.table(input_1)[1,] #Argv2
 
@@ -50,8 +53,8 @@ m$derived[inds] <- sapply(allele[inds],'[[',2)
 mono=(which(m$nballele==1))
 
 geno2 <-read.table("geno.tmp")
-geno.2<-geno2[-c(mono),] #virer dans geno les markeurs monomorphes
-
+#geno.2<-geno2[-c(mono),] #virer dans geno les markeurs monomorphes
+geno.2 <- geno2
 ancestral.state=as.matrix(geno.2[,1])
 geno.3<-matrix(ncol=ncol(geno.2),nrow=nrow(geno.2))
 
@@ -84,7 +87,8 @@ for(i in 1:ncol(geno.5)){
 
 }
 
-m<-m[-c(mono),]
+m <- m
+#m<-m[-c(mono),]
 #on veux virer ceux avec trop de missing data:
 miss_rate <- 0.2 #A passer en argument dans le script
 rate <-m[,1] * miss_rate
@@ -105,9 +109,11 @@ x <- na.omit(geno.6)
 for (i in 1:ncol(geno)){      #a remplacer par un sapply ou équivalent
 geno[which(geno[,i]=="-"),i]<-NA
   }
+m$Nsp1 <-rowSums(  !is.na(as.matrix(geno[,1:sp1]) )  )
+m$Nsp2 <--rowSums(  !is.na(as.matrix(geno[,(sp1+1):(sp1+sp2)]) )  ) # !!!!
 
-m$Nsp1 <-rowSums(  !is.na(as.matrix(geno[-mono,1:sp1]) )  )
-m$Nsp2 <--rowSums(  !is.na(as.matrix(geno[-mono,(sp1+1):(sp1+sp2)]) )  ) #Ici ça devrait être positif !!!!
+#m$Nsp1 <-rowSums(  !is.na(as.matrix(geno[-mono,1:sp1]) )  )
+#m$Nsp2 <--rowSums(  !is.na(as.matrix(geno[-mono,(sp1+1):(sp1+sp2)]) )  ) # !!!!
 bp <- t(cbind(m$Nsp1,-m$Nsp2)) #du coup je reverse en mettant un "-" mais ça devrait pas !!!!
 #bp <- bp.tmp[,-c(mono)]
 
