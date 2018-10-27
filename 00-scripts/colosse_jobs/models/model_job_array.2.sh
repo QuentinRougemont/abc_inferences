@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -A ihv-653-aa
+#PBS -A youraccount
 #PBS -N OutputTest
 ##PBS -o OutTest.out
 ##PBS -e OutTest.err
