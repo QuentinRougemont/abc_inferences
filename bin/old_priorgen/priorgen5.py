@@ -44,7 +44,6 @@ The output can be used from the stdout by ms (Hudson 2002), msnsam (Ross-Ibarra 
 \tmsnsam tbs 20000 -s 1 -I 2 tbs tbs 0 -n 1 tbs -en tbs 1 tbs #for 'BOT2'\n\n\
 \tfor models assuming 2 pops with no bottlenecks in daughter branches A & B\n\
 \tmsnsam tbs 20000 -s 1 -I 2 tbs tbs 0 -m 1 2 tbs -m 2 1 tbs -n 1 tbs -n 2 tbs -ej tbs 2 1 -eN tbs tbs\t#for 'SI (bottleneck=N)'\n\
-\tmsnsam tbs 20000 -t tbs -I 2 tbs tbs 0 -m 1 2 tbs -m 2 1 tbs -n 1 tbs -n 2 tbs\t#for 'EQ (bottleneck=N)'\n\
 \tmsnsam tbs 20000 -s 1 -I 2 tbs tbs 0 -m 1 2 tbs -m 2 1 tbs -n 1 tbs -n 2 tbs -ej tbs 2 1 -eN tbs tbs\t#for 'IM (bottleneck=N)'\n\
 \tmsnsam tbs 20000 -s 1 -I 2 tbs tbs 0 -m 1 2 tbs -m 2 1 tbs -n 1 tbs -n 2 tbs -ema tbs 2 0 tbs tbs 0 -ej tbs 2 1 -eN tbs tbs\t#for 'AM (bottleneck=N)'\n\
 \tmsnsam tbs 20000 -s 1 -I 2 tbs tbs 0 -m 1 2 tbs -m 2 1 tbs -n 1 tbs -n 2 tbs -eM tbs 0 -ej tbs 2 1 -eN tbs tbs\t#for 'SC (bottleneck=N)'\n\
@@ -170,31 +169,6 @@ if(model=="SI"):
             outputfile.write("N1\tN2\tNa\tTsplit\tshape1Ne\tshape2Ne\tpropNtrlNe1\tpropNtrlNe2\ttimebottleneck\talphapop1\talphapop2\n")
         if(bottleneck=="N"):
             outputfile.write("N1\tN2\tNa\tTsplit\tshape1Ne\tshape2Ne\tpropNtrlNe1\tpropNtrlNe2\n")
-
-if(model=="EQ"):
-    if(Nvariation=="homo"):
-        if(Mvariation=="homo"):
-            if(bottleneck=="Y"):
-                outputfile.write("N1\tN2\tM1\tM2\ttimebottleneck\talphapop1\talphapop2\n")
-            if(bottleneck=="N"):
-                outputfile.write("N1\tN2\tM1\tM2\n")
-        if(Mvariation=="hetero"):
-            if(bottleneck=="Y"):
-                outputfile.write("N1\tN2\tM1\tM2\tshape1M1\tshape2M1\tshape1M2\tshape2M2\tpropNtrlM1\tpropNtrlM2\ttimebottleneck\talphapop1\talphapop2\n")
-            if(bottleneck=="N"):
-                outputfile.write("N1\tN2\tM1\tM2\tshape1M1\tshape2M1\tshape1M2\tshape2M2\tpropNtrlM1\tpropNtrlM2\n")
-    if(Nvariation=="hetero"):
-        if(Mvariation=="homo"):
-            if(bottleneck=="Y"):
-                outputfile.write("N1\tN2\tshape1Ne\tshape2Ne\tpropNtrlNe1\tpropNtrlNe2\tM1\tM2\ttimebottleneck\talphapop1\talphapop2\n")
-            if(bottleneck=="N"):
-                outputfile.write("N1\tN2\tshape1Ne\tshape2Ne\tpropNtrlNe1\tpropNtrlNe2\tM1\tM2\n")
-        if(Mvariation=="hetero"):
-            if(bottleneck=="Y"):
-                outputfile.write("N1\tN2\tshape1Ne\tshape2Ne\tpropNtrlNe1\tpropNtrlNe2\tM1\tM2\tshape1M1\tshape2M1\tshape1M2\tshape2M2\tpropNtrlM1\tpropNtrlM2\ttimebottleneck\talphapop1\talphapop2\n")
-            if(bottleneck=="N"):
-                outputfile.write("N1\tN2\tshape1Ne\tshape2Ne\tpropNtrlNe1\tpropNtrlNe2\tM1\tM2\tshape1M1\tshape2M1\tshape1M2\tshape2M2\tpropNtrlM1\tpropNtrlM2\n")
-
 if(model=="IM"):
     if(Nvariation=="homo"):
         if(Mvariation=="homo"):
@@ -395,30 +369,6 @@ for i in range(nreps):
                 outputfile.write(" \t{0:.5f}\t{1:.5f}\t{2}\t{3}\t{4:.5f}\t{5:.5f}\t{6:.5f}\n".format(shape1Ne, shape2Ne, n1priorGenomic["nNeutre"], n2priorGenomic["nNeutre"],Tbottleneck, float(alpha1prior),float(alpha2prior)))
             if(bottleneck=="N"):
                 outputfile.write(" \t{0:.5f}\t{1:.5f}\t{2}\t{3}\n".format(shape1Ne, shape2Ne, n1priorGenomic["nNeutre"], n2priorGenomic["nNeutre"]))
-    if(model=="EQ"):
-        outputfile.write("{0:.5f}\t{1:.5f}".format(n1prior, n2prior))
-        if(Nvariation=="homo"):
-            if(Mvariation=="homo"):
-                if(bottleneck=="Y"):
-                    outputfile.write(" \t{0:.5f}\t{1:.5f}\t{2:.5f}\t{3:.5f}\t{4:.5f}\n".format(M1prior, M2prior,Tbottleneck, float(alpha1prior),float(alpha2prior)))
-                if(bottleneck=="N"):
-                    outputfile.write(" \t{0:.5f}\t{1:.5f}\n".format(M1prior, M2prior))
-            if(Mvariation=="hetero"):
-                if(bottleneck=="Y"):
-                    outputfile.write(" \t{0:.5f}\t{1:.5f}\t{2:.5f}\t{3:.5f}\t{4:.5f}\t{5:.5f}\t{6}\t{7}\t{8:.5f}\t{9:.5f}\t{10:.5f}\\n".format(M1prior, M2prior, shape1mig1, shape2mig1, shape1mig2, shape2mig2, M1priorGenomic["nNeutre"], M2priorGenomic["nNeutre"],Tbottleneck, float(alpha1prior),float(alpha2prior)))
-                if(bottleneck=="N"):
-                    outputfile.write(" \t{0:.5f}\t{1:.5f}\t{2:.5f}\t{3:.5f}\t{4:.5f}\t{5:.5f}\t{6}\t{7}\n".format(M1prior, M2prior, shape1mig1, shape2mig1, shape1mig2, shape2mig2, M1priorGenomic["nNeutre"], M2priorGenomic["nNeutre"]))
-        if(Nvariation=="hetero"):
-            if(Mvariation=="homo"):
-                if(bottleneck=="Y"):
-                    outputfile.write(" \t{0:.5f}\t{1:.5f}\t{2}\t{3}\t{4:.5f}\t{5:.5f}\t{6:.5f}\t{7:.5f}\t{8:.5f}\n".format(shape1Ne, shape2Ne, n1priorGenomic["nNeutre"], n2priorGenomic["nNeutre"], M1prior, M2prior,Tbottleneck, float(alpha1prior),float(alpha2prior)))
-                if(bottleneck=="N"):
-                    outputfile.write(" \t{0:.5f}\t{1:.5f}\t{2}\t{3}\t{4:.5f}\t{5:.5f}\n".format(shape1Ne, shape2Ne, n1priorGenomic["nNeutre"], n2priorGenomic["nNeutre"], M1prior, M2prior))
-            if(Mvariation=="hetero"):
-                if(bottleneck=="Y"):
-                    outputfile.write(" \t{0:.5f}\t{1:.5f}\t{2}\t{3}\t{4:.5f}\t{5:.5f}\t{6:.5f}\t{7:.5f}\t{8:.5f}\t{9:.5f}\t{10}\t{11}\t{12:.5f}\t{13:.5f}\t{14:.5f}\n".format(shape1Ne, shape2Ne, n1priorGenomic["nNeutre"], n2priorGenomic["nNeutre"], M1prior, M2prior, shape1mig1, shape2mig1, shape1mig2, shape2mig2, M1priorGenomic["nNeutre"], M2priorGenomic["nNeutre"],Tbottleneck, float(alpha1prior),float(alpha2prior)))
-                if(bottleneck=="N"):
-                    outputfile.write(" \t{0:.5f}\t{1:.5f}\t{2}\t{3}\t{4:.5f}\t{5:.5f}\t{6:.5f}\t{7:.5f}\t{8:.5f}\t{9:.5f}\t{10}\t{11}\n".format(shape1Ne, shape2Ne, n1priorGenomic["nNeutre"], n2priorGenomic["nNeutre"], M1prior, M2prior, shape1mig1, shape2mig1, shape1mig2, shape2mig2, M1priorGenomic["nNeutre"], M2priorGenomic["nNeutre"]))
     if(model=="IM"):
         if(Nvariation=="homo"):
             if(Mvariation=="homo"):
@@ -554,16 +504,6 @@ for i in range(nreps):
             if(bottleneck=="N"):
             #msnsam tbs 200 -s 1 -I 2 tbs tbs 0 -m 1 2 tbs -m 2 1 tbs -n 1 tbs -n 2 tbs -ej tbs 2 1 -eN tbs tbs # for 'SI'
                 cout+="{0} {1} {2} {3} {4} {5:.5f} {6:.5f} {7:.5f} {8:.5f} {9:.5f}".format(int(nspA[loc])+int(nspB[loc]), int(nspA[loc]), int(nspB[loc]), 0, 0, float(n1priorGenomic["values"][loc]), float(n2priorGenomic["values"][loc]), float(TsplitGenomic[loc]), float(TsplitGenomic[loc]), float(nApriorGenomic["values"][loc]))
-        if(model=="EQ"):
-            if(bottleneck=="Y"):
-                cout+="{0} {1} {2} {3:.5f} {4:.5f} {5:.5f} {6:.5f} {7:.5f} {8:.5f} {9:.5f} {10:.5f} {11:.5f}".format(int(nspA[loc])+int(nspB[loc]), int(nspA[loc]), int(nspB[loc]), float(M1priorGenomic["values"][loc]), float(M2priorGenomic["values"][loc]), float(n1priorGenomic["values"][loc]), float(n2priorGenomic["values"][loc]), float(TsplitGenomic[loc]), float(TbottleneckGenomic[loc]), float(alpha1prior),float(TbottleneckGenomic[loc]), float(alpha2prior), float(TsplitGenomic[loc]))
-            if(bottleneck=="N"):
-            #msnsam tbs 200 -t tbs -r tbs tbs -I 2 tbs tbs 0 -m 1 2 tbs -m 2 1 tbs -n 1 tbs -n 2 tbs -ej tbs 2 1 -eN tbs tbs # for 'IM'
-                        #cout+="{0} {1:.5f} {2:.5f} {3} {4} {5} {6:.5f} {7:.5f} {8:.5f} {9:.5f} {10:.5f} {11:.5f} {12:.5f}".format(int(nspA[loc])+int(nspB[loc]), float(theta[loc]), float(rho[loc]), int(L[loc]), int(nspA[loc]), int(nspB[loc]), float(M1priorGenomic["values"][loc]), float(M2priorGenomic["values"][loc]), float(n1priorGenomic["values"][loc]), float(n2priorGenomic["values"][loc]), float(TsplitGenomic[loc]), float(TsplitGenomic[loc]), float(nApriorGenomic["values"][loc]))
-            #
-            #msnsam tbs 200 -s 1 -I 2 tbs tbs 0 -m 1 2 tbs -m 2 1 tbs -n 1 tbs -n 2 tbs -ej tbs 2 1 -eN tbs tbs # for 'IM'
-                            cout+="{0} {1} {2} {3:.5f} {4:.5f} {5:.5f} {6:.5f}".format(int(nspA[loc])+int(nspB[loc]), int(nspA[loc]), int(nspB[loc]), float(M1priorGenomic["values"][loc]), float(M2priorGenomic["values"][loc]), float(n1priorGenomic["values"][loc]), float(n2priorGenomic["values"][loc]))
- 
         if(model=="IM"):
             if(bottleneck=="Y"):
                 cout+="{0} {1} {2} {3:.5f} {4:.5f} {5:.5f} {6:.5f} {7:.5f} {8:.5f} {9:.5f} {10:.5f} {11:.5f} {12:.5f} {13:.5f}".format(int(nspA[loc])+int(nspB[loc]), int(nspA[loc]), int(nspB[loc]), float(M1priorGenomic["values"][loc]), float(M2priorGenomic["values"][loc]), float(n1priorGenomic["values"][loc]), float(n2priorGenomic["values"][loc]), float(TsplitGenomic[loc]), float(TbottleneckGenomic[loc]), float(alpha1prior),float(TbottleneckGenomic[loc]), float(alpha2prior), float(TsplitGenomic[loc]), float(nApriorGenomic["values"][loc]))
