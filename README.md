@@ -1,11 +1,17 @@
 # abc_inferences 
 
+# To DO:
+
+* update scripts for model choice
+* add 3- and 4- pops pipelines
+* remove unnecessary scripts
+
 # Purpose
 whole pipeline to perform [coalescent](http://www.nature.com/nrg/journal/v3/n5/full/nrg795.html) simulations and  [abc](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002803) inferences
 
-This pipeline was used to reconstruct the demographic history of Atlantic salmon *salmo salar*.
+This pipeline was used to reconstruct the demographic history of Atlantic salmon *salmo salar* but workds for any SNPs/sequence data to perform demographic modelling.
 
-I also provide additional script to reproduce major analysis from the paper about "reconstructing the history of Atlantic salmon *salmo salar* using ABC" now publish in Evolution and [available in early view](https://onlinelibrary.wiley.com/doi/epdf/10.1111/evo.13486)
+I also provide additional script to reproduce major analysis from the paper about "reconstructing the history of Atlantic salmon *salmo salar* using ABC" now publish in Evolution and [available here](https://onlinelibrary.wiley.com/doi/epdf/10.1111/evo.13486)
 
 
 ## major steps:
@@ -15,10 +21,14 @@ I also provide additional script to reproduce major analysis from the paper abou
 3. choose the model you want to run and the appropriate prior
 4. run the coalescent sims
 5. reshape the data
-6. run the abc analysis for : 
- (a) model selection 
- (b) robustness computation 
- (c) parameters estimation and goodness of fit
+6. run the abc analysis for :
+
+ * (a) model selection 
+
+ * (b) robustness computation
+
+ * (c) parameters estimation and goodness of fit
+
 7. (eventually run the pipeline using only barrier loci)
 8. (eventually draw neutral enveloppe to perform outlier detection test - I will add this later )
 
@@ -102,6 +112,7 @@ Four classical models are implemented:
 All models were used for the Salmon data. In addition the following models were implemented for some other project I may publish one day:
 1. panmixia
 1. bottleneck
+1. equilibrium
 
 The four classic models have different alternatives. See Roux et al. 2013 MBE, Roux et al. 2014 JEB, Roux et al. 2016 Plos Biol for more info
 These are:
@@ -135,25 +146,30 @@ All priors on N1, N2, Nancestral, Migration rates, Split times, etc can be edite
 
 Coalescent models are found in `00-scripts/models/model.{1..18}.sh` files.  
 Each number corresponds to a different model as follows:  
-model.1.sh = SI heterogenous Ne  
-model.2.sh = SI homogenous Ne  
-model.3.sh = AM heterogenous Ne and heterogenous M  
-model.4.sh = AM homogenous   Ne and heterogenous M  
-model.5.sh = AM heterogenous Ne and homogenous M  
-model.6.sh = AM homogenous Ne and homogenous M   
-model.7.sh = SC heterogenous Ne and heterogenous M  
-model.8.sh = SC homogenous Ne and heterogenous M  
-model.9.sh = SC heterogenous Ne and homogenous M  
-model.10.sh = IM heterogenous Ne and heterogenous M  
-model.11.sh = IM homogenous Ne and heterogenous M  
-model.12.sh = IM heterogenous Ne and homogenous M  
-model.13.sh = SC homogenous Ne and homogenous M  
-model.14.sh = IM homogenous Ne and homogenous M  
-model.15.sh = SCb heterogenous Ne and heterogenous M  
-model.16.sh = PSC heterogenous Ne and heterogenous M  
-model.17.sh = PSCb heterogenous Ne and heterogenous M  
-model.18.sh = PAN heterogenous Ne   
-model.00.sh = PAN homogenous Ne  
+* model.1.sh  = SI heterogenous Ne  
+* model.2.sh  = SI homogenous Ne  
+* model.3.sh  = AM heterogenous Ne and heterogenous M  
+* model.4.sh  = AM homogenous   Ne and heterogenous M  
+* model.5.sh  = AM heterogenous Ne and homogenous M  
+* model.6.sh  = AM homogenous Ne and homogenous M   
+* model.7.sh  = SC heterogenous Ne and heterogenous M  
+* model.8.sh  = SC homogenous Ne and heterogenous M  
+* model.9.sh  = SC heterogenous Ne and homogenous M  
+* model.10.sh = IM heterogenous Ne and heterogenous M  
+* model.11.sh = IM homogenous Ne and heterogenous M  
+* model.12.sh = IM heterogenous Ne and homogenous M  
+* model.13.sh = SC homogenous Ne and homogenous M  
+* model.14.sh = IM homogenous Ne and homogenous M  
+* model.15.sh = SCb heterogenous Ne and heterogenous M  
+* model.16.sh = PSC heterogenous Ne and heterogenous M  
+* model.17.sh = PSCb heterogenous Ne and heterogenous M  
+* model.18.sh = PCSbottleneck heterogenous Ne and heterogenous M
+* model.19.sh = EQ heterogenous Ne homogenous M  
+* model.20.sh = EQ homogenous Ne heterogenous M 
+* model.21.sh = EQ heterogenous Ne heterogenous M 
+* model.22.sh = EQ homogenous Ne homogenous M 
+* model.00.sh = PAN homogenous Ne  
+* model.0.sh  = PAN heterogenous Ne  
 
 
 I've run them using `moab scheduler` on a cluster where I could launch several job in parallel.
