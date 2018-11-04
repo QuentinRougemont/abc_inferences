@@ -38,7 +38,7 @@ mknod myfifo p
     Mvariation=homo \
     symMig=asym \
     parameters=priorfile | \
-    ../../bin/msnsam tbs $(( $NREPS * $NLOC )) -t 0.16 -r 0.08 80 -eN tbs tbs > myfifo &
+    ../../bin/msnsam tbs $(( $NREPS * $NLOC )) -t 0.16 -r 0.08 80 -eN 1 tbs > myfifo &
 
 ../../bin/mscalc < myfifo #>/dev/null &
 
