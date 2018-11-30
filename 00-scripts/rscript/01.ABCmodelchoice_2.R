@@ -1,27 +1,29 @@
 source('/home/quentin/script/rscript/cv4abc.R')
+if("data.table" %in% rownames(installed.packages()) == FALSE) 
+{install.packages("qqman", repos="https://cloud.r-project.org") 
+    print("installing packages data.table..." ) }
+
+library(data.table)
+
 
 target=as.numeric(read.table("OBS.ABC.stat.txt",skip=2,h=F))
 
-nlinesFul=1e6
+SI1=fread("zcat 00.data/si.homom.homon.ABC.stat.txt.gz"    )
+SI3=fread("zcat 00.data/si.homom.heteron.ABC.stat.txt.gz"  )
 
-M_PA1 <-matrix(scan("pan.homom.homon.ABC.stat.txt"    ), byrow=T, nrow=nlinesFul) #les 1e6 simuls sont mergés ensemble au préalable avec du bash et sed.
-M_IM1 <-matrix(scan("im.homom.homon.ABC.stat.txt"    ), byrow=T, nrow=nlinesFul) #les 1e6 simuls sont mergés ensemble au préalable avec du bash et sed.
-M_BO1 <-matrix(scan("bot.homom.homon.ABC.stat.txt"    ), byrow=T, nrow=nlinesFul) #les 1e6 sSIuls sont mergés ensemble au préalable avec du bash et sed.
+f <- function(x){
+    m <- mean(x, na.rm = TRUE)
+    x[is.na(x)] <- m
+    x
+}
 
-colSums(is.na(M_PA1))
-means2 <- colMeans(M_PA1, na.rm=TRUE)
-for (j in 1:ncol(M_PA1)){
-     M_PA1[is.na(M_PA1[, j]), j] <- means2[j]
- }
+M_PA1 <-fread("zcat 00.data/pan.homom.homon.ABC.stat.txt.gz"    ) #les 1e6 simuls sont mergés ensemble au préalable avec du bash et sed.
+M_IM1 <-fread("zcat 00.data/im.homom.homon.ABC.stat.txt.gz"    ) #les 1e6 simuls sont mergés ensemble au préalable avec du bash et sed.
+M_BO1 <-fread("zcat 00.data/bot.homom.homon.ABC.stat.txt.gz"    ) #les 1e6 sSIuls sont mergés ensemble au préalable avec du bash et sed.
+M_PA1 <- apply(M_PA1, 2, f)
+M_IM1 <- apply(M_IM1, 2, f)
+M_BO1 <- apply(M_BO1, 2, f)
 
-colSums(is.na(M_IM1))
-means2 <- colMeans(M_IM1, na.rm=TRUE)
-for (j in 1:ncol(M_IM1)){
-     M_IM1[is.na(M_IM1[, j]), j] <- means2[j]
- }
-for (j in 1:ncol(M_BO1)){
-     M_BO1[is.na(M_BO1[, j]), j] <- means2[j]
- }
 M_PA1b=M_PA1[,-c(1:3,12,13,18:25)]
 M_IM1b=M_IM1[,-c(1:3,12,13,18:25)]
 M_BO1b=M_BO1[,-c(1:3,12,13,18:25)]
@@ -33,7 +35,15 @@ obs=matrix(rep(target[1:19],10), byrow=T, nrow=10)
 x=as.factor(c(rep("A",nlinesFul),rep("B",nlinesFul),rep("C",nlinesFul))),
 
 z=rbind(M_BO1b,M_IM1b,M_PA1b)
-res5=model_selection_abc_nnet(target=obs, x=x, sumstat=z, tol=1000/(length(x)), noweight=F, rejmethod=F, nb.nnet=50, size.nnet=15, output="ALL.MODELS.29.06.16")
+res5=model_selection_abc_nnet(target=obs, 
+                              x=x, 
+                              sumstat=z,
+                              tol=1000/(length(x)), 
+                              noweight=F, 
+                              rejmethod=F, 
+                              nb.nnet=50, 
+                              size.nnet=15, 
+                              output="ALL.MODELS.29.06.16")
 
 mean_all=apply(res5,2,mean)
 sd_all=apply(res5,2,sd)

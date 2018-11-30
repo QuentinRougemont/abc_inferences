@@ -1,93 +1,48 @@
 source('00-scripts/rscript/cv4abc.R')
+if("data.table" %in% rownames(installed.packages()) == FALSE) 
+{install.packages("qqman", repos="https://cloud.r-project.org") 
+    print("installing packages data.table..." ) }
 
-colon_count = paste(" awk -F ' ' '{print NF }' ", "00.data/im.homom.homon.ABC.stat.txt" , " |head -1 " )
-ncol = as.numeric(strsplit(system ( colon_count , intern=T), " ")[[1]] [1])
+library(data.table)
 
 target=as.numeric(read.table("00.data/OBS.ABC.stat.txt",skip=2,h=F))
 
 #load simulations
-IM1=matrix(scan("00.data/im.homom.homon.ABC.stat.txt"    ), byrow=T, ncol=ncol)
-IM2=matrix(scan("00.data/im.heterom.homon.ABC.stat.txt"  ), byrow=T, ncol=ncol)
-IM3=matrix(scan("00.data/im.homom.heteron.ABC.stat.txt"  ), byrow=T, ncol=ncol)
-IM4=matrix(scan("00.data/im.heterom.heteron.ABC.stat.txt"), byrow=T, ncol=ncol)
-AM1=matrix(scan("00.data/am.homom.homon.ABC.stat.txt"    ), byrow=T, ncol=ncol)
-AM2=matrix(scan("00.data/am.heterom.homon.ABC.stat.txt"  ), byrow=T, ncol=ncol)
-AM3=matrix(scan("00.data/am.homom.heteron.ABC.stat.txt"  ), byrow=T, ncol=ncol)
-AM4=matrix(scan("00.data/am.heterom.heteron.ABC.stat.txt"), byrow=T, ncol=ncol)
-SC1=matrix(scan("00.data/sc.homom.homon.ABC.stat.txt"    ), byrow=T, ncol=ncol)
-SC2=matrix(scan("00.data/sc.heterom.homon.ABC.stat.txt"  ), byrow=T, ncol=ncol)
-SC3=matrix(scan("00.data/sc.homom.heteron.ABC.stat.txt"  ), byrow=T, ncol=ncol)
-SC4=matrix(scan("00.data/sc.heterom.heteron.ABC.stat.txt"), byrow=T, ncol=ncol)
-SI1=matrix(scan("00.data/si.homom.homon.ABC.stat.txt"    ), byrow=T, ncol=ncol)
-SI3=matrix(scan("00.data/si.homom.heteron.ABC.stat.txt"  ), byrow=T, ncol=ncol)
+IM1=fread("zcat 00.data/im.homom.homon.ABC.stat.txt.gz"    )
+IM2=fread("zcat 00.data/im.heterom.homon.ABC.stat.txt.gz"  )
+IM3=fread("zcat 00.data/im.homom.heteron.ABC.stat.txt.gz"  )
+IM4=fread("zcat 00.data/im.heterom.heteron.ABC.stat.txt.gz")
+AM1=fread("zcat 00.data/am.homom.homon.ABC.stat.txt.gz"    )
+AM2=fread("zcat 00.data/am.heterom.homon.ABC.stat.txt.gz"  )
+AM3=fread("zcat 00.data/am.homom.heteron.ABC.stat.txt.gz"  )
+AM4=fread("zcat 00.data/am.heterom.heteron.ABC.stat.txt.gz")
+SC1=fread("zcat 00.data/sc.homom.homon.ABC.stat.txt.gz"    )
+SC2=fread("zcat 00.data/sc.heterom.homon.ABC.stat.txt.gz"  )
+SC3=fread("zcat 00.data/sc.homom.heteron.ABC.stat.txt.gz"  )
+SC4=fread("zcat 00.data/sc.heterom.heteron.ABC.stat.txt.gz")
+SI1=fread("zcat 00.data/si.homom.homon.ABC.stat.txt.gz"    )
+SI3=fread("zcat 00.data/si.homom.heteron.ABC.stat.txt.gz"  )
 
-colSums(is.na(IM1))
-means2 <- colMeans(IM1, na.rm=TRUE)
-for (j in 1:ncol(IM1)){
-     IM1[is.na(IM1[, j]), j] <- means2[j]
- }
-colSums(is.na(IM2))
-means2 <- colMeans(IM2, na.rm=TRUE)
-for (j in 1:ncol(IM2)){
-     IM2[is.na(IM2[, j]), j] <- means2[j]
- }
-colSums(is.na(IM3))
-means1 <- colMeans(IM3, na.rm=TRUE)
-for (j in 1:ncol(IM3)){
-     IM3[is.na(IM3[, j]), j] <- means1[j]
- }
-colSums(is.na(IM4))
-means3 <- colMeans(IM4, na.rm=TRUE)
-for (j in 1:ncol(IM4)){
-     IM4[is.na(IM4[, j]), j] <- means3[j]
- }
+f <- function(x){
+    m <- mean(x, na.rm = TRUE)
+    x[is.na(x)] <- m
+    x
+}
 
-means2 <- colMeans(AM1, na.rm=TRUE)
-for (j in 1:ncol(AM1)){
-     AM1[is.na(AM1[, j]), j] <- means2[j]
- }
-
-means2 <- colMeans(AM2, na.rm=TRUE)
-for (j in 1:ncol(AM2)){
-     AM2[is.na(AM2[, j]), j] <- means2[j]
- }
-
-means1 <- colMeans(AM3, na.rm=TRUE)
-for (j in 1:ncol(AM3)){
-     AM3[is.na(AM3[, j]), j] <- means1[j]
- }
-
-means3 <- colMeans(AM4, na.rm=TRUE)
-for (j in 1:ncol(AM4)){
-     AM4[is.na(AM4[, j]), j] <- means3[j]
- }
-
-means2 <- colMeans(SC1, na.rm=TRUE)
-for (j in 1:ncol(SC1)){
-     SC1[is.na(SC1[, j]), j] <- means2[j]
- }
-
-means2 <- colMeans(SC2, na.rm=TRUE)
-for (j in 1:ncol(SC2)){
-     SC2[is.na(SC2[, j]), j] <- means2[j]
- }
-means1 <- colMeans(SC3, na.rm=TRUE)
-for (j in 1:ncol(SC3)){
-     SC3[is.na(SC3[, j]), j] <- means1[j]
- }
-means3 <- colMeans(SC4, na.rm=TRUE)
-for (j in 1:ncol(SC4)){
-     SC4[is.na(SC4[, j]), j] <- means3[j]
- }
-
-means2 <- colMeans(SI1, na.rm=TRUE)
-for (j in 1:ncol(SI1)){
-     SI1[is.na(SI1[, j]), j] <- means2[j]
- }
-means1 <- colMeans(SI3, na.rm=TRUE)
-for (j in 1:ncol(SI3)){
-     SI3[is.na(SI3[, j]), j] <- means1[j]
- }
+SI1 <- apply(SI1, 2, f)
+SI3 <- apply(SI3, 2, f)
+SC1 <- apply(SC1, 2, f)
+SC2 <- apply(SC2, 2, f)
+SC3 <- apply(SC3, 2, f)
+SC4 <- apply(SC4, 2, f)
+IM1 <- apply(IM1, 2, f)
+IM2 <- apply(IM2, 2, f)
+IM3 <- apply(IM3, 2, f)
+IM4 <- apply(IM4, 2, f)
+AM1 <- apply(AM1, 2, f)
+AM2 <- apply(AM2, 2, f)
+AM3 <- apply(AM3, 2, f)
+AM4 <- apply(AM4, 2, f)
 
 nlinesFul=min(nrow(IM1), nrow(IM2), nrow(IM3), nrow(IM4),
               nrow(SI1), nrow(SI3),
