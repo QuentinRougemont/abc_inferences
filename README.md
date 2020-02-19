@@ -5,6 +5,7 @@
 * update scripts for model choice
 * add 3- and 4- pops pipelines
 * remove unnecessary scripts
+* edit Rscript for parameter estimations & RF
 
 # Purpose
 whole pipeline to perform [coalescent](http://www.nature.com/nrg/journal/v3/n5/full/nrg795.html) simulations and  [abc](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002803) inferences
