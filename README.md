@@ -21,7 +21,7 @@ I also provide additional script to reproduce major analysis from the paper abou
   * SC: divergence in strict isolation followed by gene flow  
 
 these models inclued linked selection and barrier to gene flow and are represented here:
-[!example_graph](https://github.com/QuentinRougemont/abc_inferences/blob/master/pictures/Fig1.png)
+![example_graph](https://github.com/QuentinRougemont/abc_inferences/blob/master/pictures/Fig1.png)
 
 ## major steps:
 
