@@ -14,6 +14,14 @@ This pipeline was used to reconstruct the demographic history of Atlantic salmon
 
 I also provide additional script to reproduce major analysis from the paper about "reconstructing the history of Atlantic salmon *salmo salar* using ABC" now publish in Evolution and [available here](https://onlinelibrary.wiley.com/doi/epdf/10.1111/evo.13486)
 
+## compared models are the following:
+  * IM: divergence with continuous gene flow 
+  * AM: divergence with migration at the initial stage of the speciation process 
+  * SI: divergence in strict isolation
+  * SC: divergence in strict isolation followed by gene flow  
+
+these models inclued linked selection and barrier to gene flow and are represented here:
+[!example_graph](https://github.com/QuentinRougemont/abc_inferences/blob/master/pictures/Fig1.png)
 
 ## major steps:
 
